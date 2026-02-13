@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soumya Kharwar — Student Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --bg: #06080f;
+      --card: rgba(255, 255, 255, .04);
+      --border: rgba(255, 255, 255, .08);
+      --accent: #6c63ff;
+      --accent2: #00d4ff;
+      --gold: #ffd700;
+      --text: #e0e0e0;
+      --text2: #8892b0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 3px
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      perspective: 1200px;
+      overflow: hidden
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 20%, rgba(108, 99, 255, .15), transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(0, 212, 255, .1), transparent 60%)
+    }
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      overflow: hidden
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle 3s infinite
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: .2
+      }
+
+      50% {
+        opacity: 1
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      z-index: 2;
+      transform-style: preserve-3d
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 24px;
+      border: 1px solid var(--accent);
+      border-radius: 50px;
+      font-size: .85rem;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+      background: rgba(108, 99, 255, .08)
+    }
+
+    .hero-name {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      animation: float 6s ease-in-out infinite
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) rotateX(0)
+      }
+
+      50% {
+        transform: translateY(-15px) rotateX(3deg)
+      }
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      color: var(--text2);
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto 40px
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap
+    }
+
+    .stat {
+      text-align: center
+    }
+
+    .stat-num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--gold), #ff9500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .stat-label {
+      font-size: .8rem;
+      color: var(--text2);
+      text-transform: uppercase;
+      letter-spacing: 1px
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text2);
+      font-size: .75rem;
+      letter-spacing: 2px;
+      animation: bounce 2s infinite
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0)
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(10px)
+      }
+    }
+
+    .scroll-hint span {
+      width: 20px;
+      height: 32px;
+      border: 2px solid var(--text2);
+      border-radius: 12px;
+      position: relative
+    }
+
+    .scroll-hint span::after {
+      content: '';
+      width: 4px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 2px;
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: scrollDot 2s infinite
+    }
+
+    @keyframes scrollDot {
+      0% {
+        opacity: 1;
+        top: 6px
+      }
+
+      100% {
+        opacity: 0;
+        top: 18px
+      }
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 100px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(90deg, #fff, var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .section-sub {
+      color: var(--text2);
+      font-size: 1rem;
+      margin-bottom: 60px;
+      max-width: 500px
+    }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 3px;
+      margin-bottom: 16px
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center
+    }
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      backdrop-filter: blur(20px);
+      transition: transform .5s, box-shadow .5s
+    }
+
+    .about-card:hover {
+      transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+      box-shadow: 0 30px 80px rgba(108, 99, 255, .15)
+    }
+
+    .about-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 16px
+    }
+
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0
+    }
+
+    .info-label {
+      font-size: .75rem;
+      color: var(--text2);
+      text-transform: uppercase;
+      letter-spacing: 1px
+    }
+
+    .info-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff
+    }
+
+    .about-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center
+    }
+
+    .avatar-ring {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent), var(--accent2), var(--gold), var(--accent));
+      padding: 4px;
+      animation: spin 8s linear infinite
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, rgba(108, 99, 255, .2), rgba(0, 212, 255, .2));
+      color: #fff
+    }
+
+    .float-badge {
+      position: absolute;
+      padding: 10px 18px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .06);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      font-size: .8rem;
+      font-weight: 600;
+      color: #fff;
+      white-space: nowrap
+    }
+
+    .fb1 {
+      top: 10%;
+      right: 0;
+      animation: floatBadge 4s ease-in-out infinite
+    }
+
+    .fb2 {
+      bottom: 10%;
+      left: 0;
+      animation: floatBadge 5s ease-in-out infinite .5s
+    }
+
+    .fb3 {
+      top: 50%;
+      right: -20px;
+      animation: floatBadge 4.5s ease-in-out infinite 1s
+    }
+
+    @keyframes floatBadge {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-12px)
+      }
+    }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 40px
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2), var(--gold))
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 50px;
+      padding-left: 30px
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -33px;
+      top: 8px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 20px rgba(108, 99, 255, .5);
+      z-index: 2
+    }
+
+    .timeline-year {
+      font-size: .85rem;
+      color: var(--accent2);
+      font-weight: 600;
+      margin-bottom: 6px;
+      letter-spacing: 1px
+    }
+
+    .timeline-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      backdrop-filter: blur(16px);
+      transition: all .4s;
+      transform-style: preserve-3d;
+      perspective: 800px
+    }
+
+    .timeline-card:hover {
+      transform: translateX(10px) rotateY(-3deg);
+      border-color: var(--accent);
+      box-shadow: 0 20px 60px rgba(108, 99, 255, .1)
+    }
+
+    .timeline-school {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px
+    }
+
+    .timeline-class {
+      font-size: .85rem;
+      color: var(--text2);
+      margin-bottom: 10px
+    }
+
+    .timeline-achievement {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(255, 215, 0, .1), rgba(255, 149, 0, .1));
+      border: 1px solid rgba(255, 215, 0, .2);
+      font-size: .9rem;
+      color: var(--gold);
+      font-weight: 600
+    }
+
+    /* CERTIFICATES */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px
+    }
+
+    .cert-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      backdrop-filter: blur(20px);
+      transition: all .5s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden
+    }
+
+    .cert-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--gold));
+      transform: scaleX(0);
+      transition: transform .5s;
+      transform-origin: left
+    }
+
+    .cert-card:hover::before {
+      transform: scaleX(1)
+    }
+
+    .cert-card:hover {
+      transform: translateY(-12px) rotateX(5deg);
+      box-shadow: 0 30px 80px rgba(108, 99, 255, .15)
+    }
+
+    .cert-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 20px
+    }
+
+    .cert-icon.discipline {
+      background: linear-gradient(135deg, rgba(108, 99, 255, .2), rgba(108, 99, 255, .1))
+    }
+
+    .cert-icon.art {
+      background: linear-gradient(135deg, rgba(255, 107, 107, .2), rgba(255, 107, 107, .1))
+    }
+
+    .cert-icon.sports {
+      background: linear-gradient(135deg, rgba(0, 212, 255, .2), rgba(0, 212, 255, .1))
+    }
+
+    .cert-icon.performance {
+      background: linear-gradient(135deg, rgba(255, 215, 0, .2), rgba(255, 215, 0, .1))
+    }
+
+    .cert-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px
+    }
+
+    .cert-school {
+      font-size: .85rem;
+      color: var(--accent2);
+      margin-bottom: 6px;
+      font-weight: 500
+    }
+
+    .cert-desc {
+      font-size: .85rem;
+      color: var(--text2);
+      line-height: 1.6
+    }
+
+    .cert-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border)
+    }
+
+    .cert-class,
+    .cert-date {
+      font-size: .8rem;
+      color: var(--text2)
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      text-align: center;
+      transition: all .4s;
+      backdrop-filter: blur(16px)
+    }
+
+    .skill-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      border-color: var(--accent);
+      box-shadow: 0 20px 50px rgba(108, 99, 255, .12)
+    }
+
+    .skill-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 14px;
+      display: block
+    }
+
+    .skill-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px
+    }
+
+    .skill-level {
+      height: 4px;
+      background: rgba(255, 255, 255, .06);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 10px
+    }
+
+    .skill-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transition: width 1.5s ease
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 60px 5%;
+      border-top: 1px solid var(--border)
+    }
+
+    footer p {
+      color: var(--text2);
+      font-size: .85rem
+    }
+
+    .footer-name {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700
+    }
+
+    /* PARALLAX ORBS */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: -1
+    }
+
+    .orb1 {
+      width: 400px;
+      height: 400px;
+      background: rgba(108, 99, 255, .08);
+      top: 10%;
+      left: -10%
+    }
+
+    .orb2 {
+      width: 350px;
+      height: 350px;
+      background: rgba(0, 212, 255, .06);
+      bottom: 20%;
+      right: -5%
+    }
+
+    .orb3 {
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 215, 0, .04);
+      top: 50%;
+      left: 40%
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      background: rgba(6, 8, 15, .6);
+      border-bottom: 1px solid var(--border);
+      transition: all .3s
+    }
+
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none
+    }
+
+    .nav-links a {
+      color: var(--text2);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+      transition: color .3s;
+      position: relative
+    }
+
+    .nav-links a:hover {
+      color: #fff
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width .3s
+    }
+
+    .nav-links a:hover::after {
+      width: 100%
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px
+      }
+
+      .hero-stats {
+        gap: 24px
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .cert-grid {
+        grid-template-columns: 1fr
+      }
+
+      section {
+        padding: 60px 5%
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <nav>
+    <div class="nav-logo">SK.</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#skills">Skills</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="stars" id="stars"></div>
+    <div class="hero-content" data-aos="zoom-in" data-aos-duration="1200">
+      <div class="hero-badge">✦ My Student Portfolio</div>
+      <h1 class="hero-name">Soumya<br>Kharwar</h1>
+      <p class="hero-sub">Hi! I'm Soumya from Varanasi. I love art, sports and learning new things. This is my portfolio
+        where I've collected all my achievements from school!</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">13</div>
+          <div class="stat-label">Certificates</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Schools</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">8+</div>
+          <div class="stat-label">Years</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">SCROLL<span></span></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div data-aos="fade-up">
+      <div class="divider"></div>
+      <h2 class="section-title">About Me</h2>
+      <p class="section-sub">Here's a little bit about myself and my school life so far!</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card" data-aos="fade-right" data-aos-duration="800">
+        <div class="about-info">
+          <div class="info-row">
+            <div class="info-icon">👤</div>
+            <div>
+              <div class="info-label">My Name</div>
+              <div class="info-value">Soumya Kharwar</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🏫</div>
+            <div>
+              <div class="info-label">My School</div>
+              <div class="info-value">Sunbeam Suncity (School & Hostel)</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📚</div>
+            <div>
+              <div class="info-label">Class</div>
+              <div class="info-value">Class IX — Section E</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-label">My City</div>
+              <div class="info-value">Varanasi, Uttar Pradesh</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🌐</div>
+            <div>
+              <div class="info-label">Previous School</div>
+              <div class="info-value">Muni Public School, Awaleshpur</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual" data-aos="fade-left" data-aos-duration="800">
+        <div class="avatar-ring">
+          <div class="avatar-inner">S</div>
+        </div>
+        <div class="float-badge fb1">🏆 Most Disciplined</div>
+        <div class="float-badge fb2">🎨 Poster Making</div>
+        <div class="float-badge fb3">🏃 Relay Race</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section id="journey">
+    <div data-aos="fade-up">
+      <div class="divider"></div>
+      <h2 class="section-title">My Journey</h2>
+      <p class="section-sub">Here's how my school life has been — from Class II all the way to Class IX!</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="0">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2026</div>
+        <div class="timeline-card">
+          <div class="timeline-school">Sunbeam Suncity (School & Hostel)</div>
+          <div class="timeline-class">Class IX — Section E</div>
+          <div class="timeline-achievement">🏅 Most Disciplined Child</div>
+        </div>
+      </div>
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2025</div>
+        <div class="timeline-card">
+          <div class="timeline-school">Sunbeam Suncity (School & Hostel)</div>
+          <div class="timeline-class">Class VIII — Section B</div>
+          <div class="timeline-achievement">✨ Best Groomed Child</div>
+        </div>
+      </div>
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2023</div>
+        <div class="timeline-card">
+          <div class="timeline-school">Muni Public School</div>
+          <div class="timeline-class">Class VII — Section A</div>
+          <div class="timeline-achievement">🥉 3rd Rank — Three Legged Race</div>
+        </div>
+      </div>
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2022</div>
+        <div class="timeline-card">
+          <div class="timeline-school">Muni Public School</div>
+          <div class="timeline-class">Class VI — Section A</div>
+          <div class="timeline-achievement">🥉 3rd Position — Relay Race &nbsp;|&nbsp; 📝 Best Holiday Homework</div>
+        </div>
+      </div>
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2021</div>
+        <div class="timeline-card">
+          <div class="timeline-school">Muni Public School</div>
+          <div class="timeline-class">Class V — Section A</div>
+          <div class="timeline-achievement">🎨 Best Poster Making — Tribute to CDS Gen. Bipin Rawat</div>
+        </div>
+      </div>
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="500">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2019–2020</div>
+        <div class="timeline-card">
+          <div class="timeline-school">Muni Public School</div>
+          <div class="timeline-class">Class III</div>
+          <div class="timeline-achievement">🥇 1st — Three Leg Race &nbsp;|&nbsp; 🥈 2nd — Partner Ball Balancing
+            &nbsp;|&nbsp; 🥈 2nd — 30 Second Race (Annual Sports)</div>
+        </div>
+      </div>
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2019</div>
+        <div class="timeline-card">
+          <div class="timeline-school">BHU — Institute of Science</div>
+          <div class="timeline-class">Inter School Cultural Programme</div>
+          <div class="timeline-achievement">🎭 Children's Day Cultural Programme — Participation at Banaras Hindu
+            University</div>
+        </div>
+      </div>
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="700">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2018–2019</div>
+        <div class="timeline-card">
+          <div class="timeline-school">Muni Public School</div>
+          <div class="timeline-class">Class II</div>
+          <div class="timeline-achievement">🌟 Best Participation — Annual Function &nbsp;|&nbsp; ✍️ Best Hand Writing —
+            Excellent</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div data-aos="fade-up">
+      <div class="divider"></div>
+      <h2 class="section-title">My Achievements</h2>
+      <p class="section-sub">These are the certificates I've earned over the years. I'm really proud of each one!</p>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card" data-aos="fade-up" data-aos-delay="0" data-tilt data-tilt-max="8" data-tilt-speed="400"
+        data-tilt-glare data-tilt-max-glare="0.15">
+        <div class="cert-icon discipline">🏅</div>
+        <div class="cert-title">Most Disciplined Child</div>
+        <div class="cert-school">Sunbeam Suncity (School & Hostel)</div>
+        <div class="cert-desc">I received this award for being the most disciplined student in my class. It was given by
+          our Director, Asst. Director and Principal!</div>
+        <div class="cert-meta"><span class="cert-class">Class IX-E</span><span class="cert-date">12 Feb 2026</span>
+        </div>
+      </div>
+      <div class="cert-card" data-aos="fade-up" data-aos-delay="100" data-tilt data-tilt-max="8" data-tilt-speed="400"
+        data-tilt-glare data-tilt-max-glare="0.15">
+        <div class="cert-icon discipline">✨</div>
+        <div class="cert-title">Best Groomed Child</div>
+        <div class="cert-school">Sunbeam Suncity (School & Hostel)</div>
+        <div class="cert-desc">I got this for being the best groomed student in my school. I always try to keep myself
+          neat and presentable.</div>
+        <div class="cert-meta"><span class="cert-class">Class VIII-B</span><span class="cert-date">6 Mar 2025</span>
+        </div>
+      </div>
+      <div class="cert-card" data-aos="fade-up" data-aos-delay="200" data-tilt data-tilt-max="8" data-tilt-speed="400"
+        data-tilt-glare data-tilt-max-glare="0.15">
+        <div class="cert-icon art">🎨</div>
+        <div class="cert-title">Best Poster Making Performance</div>
+        <div class="cert-school">Muni Public School — Varanasi Campus</div>
+        <div class="cert-desc">I won this for making the best poster in a competition called "A Tribute to Late CDS
+          General Bipin Rawat." I love drawing and painting!</div>
+        <div class="cert-meta"><span class="cert-class">Class V-A</span><span class="cert-date">—</span></div>
+      </div>
+      <div class="cert-card" data-aos="fade-up" data-aos-delay="300" data-tilt data-tilt-max="8" data-tilt-speed="400"
+        data-tilt-glare data-tilt-max-glare="0.15">
+        <div class="cert-icon sports">🏃</div>
+        <div class="cert-title">3rd Position — Relay Race</div>
+        <div class="cert-school">Muni Public School — Varanasi Campus</div>
+        <div class="cert-desc">I got 3rd place in the Relay Race! Running with my friends and winning together was so
+          much fun.</div>
+        <div class="cert-meta"><span class="cert-class">Class VI-A</span><span class="cert-date">—</span></div>
+      </div>
+      <div class="cert-card" data-aos="fade-up" data-aos-delay="400" data-tilt data-tilt-max="8" data-tilt-speed="400"
+        data-tilt-glare data-tilt-max-glare="0.15">
+        <div class="cert-icon performance">🌟</div>
+        <div class="cert-title">Best Participation — Annual Function</div>
+        <div class="cert-school">Muni Public School</div>
+        <div class="cert-desc">I received this certificate for performing in our school's Annual Function when I was in
+          Class II. It was my first big stage performance!</div>
+        <div class="cert-meta"><span class="cert-class">Class II</span><span class="cert-date">10 Feb 2019</span></div>
+      </div>
+      <div class="cert-card" data-aos="fade-up" data-aos-delay="500" data-tilt data-tilt-max="8" data-tilt-speed="400"
+        data-tilt-glare data-tilt-max-glare="0.15">
+        <div class="cert-icon sports">🦵</div>
+        <div class="cert-title">3rd Rank — Three Legged Race</div>
+        <div class="cert-school">Muni Public School — Varanasi Campus</div>
+        <div class="cert-desc">I came 3rd in the Three Legged Race! It was really hard to run with my partner but we
+          practiced a lot and did it.</div>
+        <div class="cert-meta"><span class="cert-class">Class VII-A</span><span class="cert-date">—</span></div>
+      </div>
+      <div class="cert-card" data-aos="fade-up" data-aos-delay="600" data-tilt data-tilt-max="8" data-tilt-speed="400"
+        data-tilt-glare data-tilt-max-glare="0.15">
+        <div class="cert-icon performance">📝</div>
+        <div class="cert-title">Best Holiday Homework</div>
+        <div class="cert-school">Muni Public School — Varanasi Campus</div>
+        <div class="cert-desc">I won this for making the best holiday homework in my class! I put a lot of effort into
+          making it creative and colorful.</div>
+        <div class="cert-meta"><span class="cert-class">Class VI-A</span><span class="cert-date">—</span></div>
+      </div>
+      <div class="cert-card" data-aos="fade-up" data-aos-delay="700" data-tilt data-tilt-max="8" data-tilt-speed="400"
+        data-tilt-glare data-tilt-max-glare="0.15">
+        <div class="cert-icon sports">🤾</div>
+        <div class="cert-title">2nd — Partner Ball Balancing</div>
+        <div class="cert-school">Muni Public School — Annual Sports</div>
+        <div class="cert-desc">I got 2nd place in Partner Ball Balancing at our Annual Sports Day! Me and my partner had
+          to balance the ball together while running.</div>
+        <div class="cert-meta"><span class="cert-class">Class III</span><span class="cert-date">—</span></div>
+      </div>
+      <div class="cert-card" data-aos="fade-up" data-aos-delay="800" data-tilt data-tilt-max="8" data-tilt-speed="400"
+        data-tilt-glare data-tilt-max-glare="0.15">
+        <div class="cert-icon art">✍️</div>
+        <div class="cert-title">Best Hand Writing — Excellent</div>
+        <div class="cert-school">Muni Public School</div>
+        <div class="cert-desc">I got an Excellent grade for my handwriting! I've always loved writing neatly and this
+          made me really happy.</div>
+        <div class="cert-meta"><span class="cert-class">Class II</span><span class="cert-date">2018-19</span></div>
+      </div>
+      <div class="cert-card" data-aos="fade-up" data-aos-delay="900" data-tilt data-tilt-max="8" data-tilt-speed="400"
+        data-tilt-glare data-tilt-max-glare="0.15">
+        <div class="cert-icon sports">🏃</div>
+        <div class="cert-title">2nd — 30 Second Race</div>
+        <div class="cert-school">Muni Public School — Annual Sports</div>
+        <div class="cert-desc">I came 2nd in the 30 Second Race at our Sports Day! I ran as fast as I could and almost
+          came first.</div>
+        <div class="cert-meta"><span class="cert-class">Class III</span><span class="cert-date">—</span></div>
+      </div>
+      <div class="cert-card" data-aos="fade-up" data-aos-delay="1000" data-tilt data-tilt-max="8" data-tilt-speed="400"
+        data-tilt-glare data-tilt-max-glare="0.15">
+        <div class="cert-icon sports">🥇</div>
+        <div class="cert-title">1st — Three Leg Race</div>
+        <div class="cert-school">Muni Public School — Annual Sports</div>
+        <div class="cert-desc">I won 1st place in the Three Leg Race! This is one of my proudest moments in sports — me
+          and my partner were the fastest!</div>
+        <div class="cert-meta"><span class="cert-class">Class III</span><span class="cert-date">—</span></div>
+      </div>
+      <div class="cert-card" data-aos="fade-up" data-aos-delay="1100" data-tilt data-tilt-max="8" data-tilt-speed="400"
+        data-tilt-glare data-tilt-max-glare="0.15">
+        <div class="cert-icon performance">🎭</div>
+        <div class="cert-title">Children's Day Cultural Programme</div>
+        <div class="cert-school">Banaras Hindu University — Institute of Science</div>
+        <div class="cert-desc">I got to perform at Banaras Hindu University for Children's Day! It was an inter-school
+          event and I was so excited to go to BHU.</div>
+        <div class="cert-meta"><span class="cert-class">Inter School</span><span class="cert-date">10 Nov 2019</span>
+        </div>
+      </div>
+      <div class="cert-card" data-aos="fade-up" data-aos-delay="1200" data-tilt data-tilt-max="8" data-tilt-speed="400"
+        data-tilt-glare data-tilt-max-glare="0.15">
+        <div class="cert-icon art">🎨</div>
+        <div class="cert-title">Manifest — Inter School Art Festival</div>
+        <div class="cert-school">Dalimss Sunbeam School — Ramkatora, Varanasi</div>
+        <div class="cert-desc">I participated in the Manifest Art Festival at Dalimss Sunbeam School! It was an
+          inter-school painting competition and I loved creating my artwork there.</div>
+        <div class="cert-meta"><span class="cert-class">Class V-A (Muni PS)</span><span class="cert-date">2022-23</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div data-aos="fade-up">
+      <div class="divider"></div>
+      <h2 class="section-title">My Skills & Interests</h2>
+      <p class="section-sub">These are the things I'm good at and love doing!</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card" data-aos="zoom-in" data-aos-delay="0"><span class="skill-emoji">🎨</span>
+        <div class="skill-name">Art & Poster Making</div>
+        <div class="skill-level">
+          <div class="skill-fill" style="width:90%"></div>
+        </div>
+      </div>
+      <div class="skill-card" data-aos="zoom-in" data-aos-delay="100"><span class="skill-emoji">🏃</span>
+        <div class="skill-name">Athletics & Sports</div>
+        <div class="skill-level">
+          <div class="skill-fill" style="width:80%"></div>
+        </div>
+      </div>
+      <div class="skill-card" data-aos="zoom-in" data-aos-delay="200"><span class="skill-emoji">📖</span>
+        <div class="skill-name">Academics</div>
+        <div class="skill-level">
+          <div class="skill-fill" style="width:85%"></div>
+        </div>
+      </div>
+      <div class="skill-card" data-aos="zoom-in" data-aos-delay="300"><span class="skill-emoji">🎭</span>
+        <div class="skill-name">Cultural Activities</div>
+        <div class="skill-level">
+          <div class="skill-fill" style="width:88%"></div>
+        </div>
+      </div>
+      <div class="skill-card" data-aos="zoom-in" data-aos-delay="400"><span class="skill-emoji">🤝</span>
+        <div class="skill-name">Discipline & Leadership</div>
+        <div class="skill-level">
+          <div class="skill-fill" style="width:95%"></div>
+        </div>
+      </div>
+      <div class="skill-card" data-aos="zoom-in" data-aos-delay="500"><span class="skill-emoji">💡</span>
+        <div class="skill-name">Creativity</div>
+        <div class="skill-level">
+          <div class="skill-fill" style="width:92%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Made with ❤️ by <span class="footer-name">Soumya Kharwar</span> — Class IX, Sunbeam Suncity, Varanasi</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://unpkg.com/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+  <script>
+    AOS.init({ once: true, duration: 700, easing: 'ease-out-cubic' });
+    // Stars
+    const s = document.getElementById('stars'); for (let i = 0; i < 120; i++) { const d = document.createElement('div'); d.className = 'star'; d.style.left = Math.random() * 100 + '%'; d.style.top = Math.random() * 100 + '%'; d.style.animationDelay = Math.random() * 3 + 's'; d.style.animationDuration = (2 + Math.random() * 3) + 's'; s.appendChild(d) }
+    // 3D parallax on mouse
+    document.addEventListener('mousemove', e => { const x = (e.clientX / window.innerWidth - .5) * 20; const y = (e.clientY / window.innerHeight - .5) * 20; document.querySelectorAll('.orb').forEach((o, i) => { o.style.transform = `translate(${x * (i + 1) * .5}px,${y * (i + 1) * .5}px)` }); const h = document.querySelector('.hero-content'); if (h) h.style.transform = `rotateX(${-y * .15}deg) rotateY(${x * .15}deg)` });
+    // Tilt init
+    VanillaTilt.init(document.querySelectorAll("[data-tilt]"), { max: 8, speed: 400, glare: true, "max-glare": 0.15 });
+  </script>
+</body>
+
+</html>
